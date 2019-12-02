@@ -1,0 +1,30 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StoneTower : Tower
+{
+
+    //1
+    public GameObject stonePrefab;
+    //2
+    protected override void AttackEnemy()
+    {
+        base.AttackEnemy();
+        //3
+        GameObject stone = (GameObject)Instantiate(stonePrefab,
+        towerPieceToAim.position, Quaternion.identity);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
