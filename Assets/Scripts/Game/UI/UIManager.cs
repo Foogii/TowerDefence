@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public Text txtWave;
     public Text txtEscapedEnemies;
 
+    public GameObject towerInfoWindow;
+
     //1
     void Awake()
     {
@@ -39,5 +41,13 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         UpdateTopBar();
+    }
+
+    public void ShowTowerInfoWindow(Tower tower)
+    {
+        towerInfoWindow.GetComponent<TowerInfoWindow>().tower = tower;
+        towerInfoWindow.SetActive(true);
+        UtilityMethods.MoveUiElementToWorldPosition(towerInfoWindow.
+        GetComponent<RectTransform>(), tower.transform.position);
     }
 }

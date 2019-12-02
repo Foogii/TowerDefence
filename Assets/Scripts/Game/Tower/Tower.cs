@@ -127,6 +127,11 @@ public class Tower : MonoBehaviour
         aggroRadius *= 1.20f;
     }
 
+    public void ShowTowerInfo()
+    {
+        UIManager.Instance.ShowTowerInfoWindow(this);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
