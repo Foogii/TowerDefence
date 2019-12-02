@@ -25,9 +25,4 @@ public class StoneTower : Tower
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

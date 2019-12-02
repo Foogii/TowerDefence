@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine;
-using System.Collections.Generic;
 
 public enum TowerType
 {
@@ -48,8 +46,7 @@ public class Tower : MonoBehaviour
         //2
         foreach (Enemy enemy in EnemyManager.Instance.Enemies)
         {
-            if (Vector3.Distance(transform.position, enemy.transform.position)
-            <= aggroRadius)
+            if (Vector3.Distance(transform.position, enemy.transform.position) <= aggroRadius)
             {
                 enemiesInRange.Add(enemy);
             }
@@ -65,11 +62,9 @@ public class Tower : MonoBehaviour
         //5
         foreach (Enemy enemy in GetEnemiesInAggroRange())
         {
-            if (Vector3.Distance(transform.position, enemy.transform.position)
-            < smallestDistance)
+            if (Vector3.Distance(transform.position, enemy.transform.position) < smallestDistance)
             {
-                smallestDistance = Vector3.Distance(transform.position,
-                enemy.transform.position);
+                smallestDistance = Vector3.Distance(transform.position, enemy.transform.position);
                 nearestEnemy = enemy;
             }
         }
