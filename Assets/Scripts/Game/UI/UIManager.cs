@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
     public Text txtWave;
     public Text txtEscapedEnemies;
 
+    public Transform enemyHealthBars;
+    public GameObject enemyHealthBarPrefab;
+
     public GameObject towerInfoWindow;
 
     public GameObject winGameWindow;
@@ -65,6 +68,13 @@ public class UIManager : MonoBehaviour
     {
         blackBackground.SetActive(true);
         loseGameWindow.SetActive(true);
+    }
+
+    public void CreateHealthBarForEnemy(Enemy enemy)
+    {
+        GameObject healthBar = Instantiate(enemyHealthBarPrefab);
+        healthBar.transform.SetParent(enemyHealthBars, false);
+        healthBar.GetComponent<EnemyHealthBar>().enemy = enemy;
     }
 
 }
