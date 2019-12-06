@@ -49,6 +49,7 @@ public class WaveManager : MonoBehaviour
                 spawnCounter = 0f;
                 GameManager.Instance.waveNumber++;
                 //6
+                UIManager.Instance.ShowCenterWindow("Wave " + GameManager.Instance.waveNumber);
                 break;
             }
         }
