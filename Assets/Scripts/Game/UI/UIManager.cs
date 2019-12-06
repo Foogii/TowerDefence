@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject loseGameWindow;
     public GameObject blackBackground;
     public GameObject centerWindow;
+    public GameObject damageCanvas;
 
     //1
     void Awake()
@@ -80,7 +81,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowCenterWindow(string text)
     {
-        centerWindow.transform.FindChild("TxtWave").GetComponent<Text>().text = text;
+        centerWindow.transform.Find("TxtWave").GetComponent<Text>().text = text;
         StartCoroutine(EnableAndDisableCenterWindow());
     }
 
@@ -90,6 +91,23 @@ public class UIManager : MonoBehaviour
         {
             yield return new WaitForSeconds(.4f); centerWindow.SetActive(true);
             yield return new WaitForSeconds(.4f); centerWindow.SetActive(false);
+        }
+    }
+
+    //1
+    public void ShowDamage()
+    {
+        StartCoroutine(DoDamageAnimation());
+    }
+    //2
+    private IEnumerator DoDamageAnimation()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(.1f);
+            damageCanvas.SetActive(true);
+            yield return new WaitForSeconds(.1f);
+            damageCanvas.SetActive(false);
         }
     }
 
