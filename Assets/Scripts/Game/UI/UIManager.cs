@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public Text txtWave;
     public Text txtEscapedEnemies;
 
+    public static float vrUiScaleDivider = 12;
+
     public Transform enemyHealthBars;
     public GameObject enemyHealthBarPrefab;
 
@@ -40,9 +42,16 @@ public class UIManager : MonoBehaviour
     //3
     public void ShowAddTowerWindow(GameObject towerSlot)
     {
+        if (GameManager.Instance.gameOver)
+        {
+            return;
+        }
+
         addTowerWindow.SetActive(true);
         addTowerWindow.GetComponent<AddTowerWindow>().
         towerSlotToAddTowerTo = towerSlot;
+        UtilityMethods.MoveUiElementToWorldPosition(addTowerWindow.GetComponent<RectTransform>(), towerSlot.transform.position);
+
         UtilityMethods.MoveUiElementToWorldPosition(addTowerWindow.GetComponent<RectTransform>(), towerSlot.transform.position);
     }
 
@@ -54,21 +63,28 @@ public class UIManager : MonoBehaviour
 
     public void ShowTowerInfoWindow(Tower tower)
     {
+        if (GameManager.Instance.gameOver)
+        {
+            return;
+        }
+
         towerInfoWindow.GetComponent<TowerInfoWindow>().tower = tower;
         towerInfoWindow.SetActive(true);
         UtilityMethods.MoveUiElementToWorldPosition(towerInfoWindow.
         GetComponent<RectTransform>(), tower.transform.position);
+
+        UtilityMethods.MoveUiElementToWorldPosition(towerInfoWindow.GetComponent<RectTransform>(), tower.transform.position);
     }
 
     public void ShowWinScreen()
     {
-        blackBackground.SetActive(true);
+        //blackBackground.SetActive(true);
         winGameWindow.SetActive(true);
     }
 
     public void ShowLoseScreen()
     {
-        blackBackground.SetActive(true);
+        //blackBackground.SetActive(true);
         loseGameWindow.SetActive(true);
     }
 

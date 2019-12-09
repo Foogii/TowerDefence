@@ -4,10 +4,15 @@ public static class UtilityMethods
 {
     public static void MoveUiElementToWorldPosition(RectTransform rectTransform, Vector3 worldPosition)
     {
-        Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
-        rectTransform.position = screenPoint;
+        //Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
+        //rectTransform.position = screenPoint;
 
-
+        //1 
+        rectTransform.position = worldPosition + new Vector3(0, 3);
+        //2 // Needed to rotate UI the right way 
+        rectTransform.LookAt(Camera.main.transform.position + Camera.main.transform.forward * 10000);
+        //3 
+        ScaleRectTransformBasedOnDistanceFromCamera(rectTransform);
     }
 
     // 1
@@ -27,5 +32,12 @@ public static class UtilityMethods
         //4
         return Quaternion.Slerp(currentRotation, targetRotation,
         Time.deltaTime * 10f);
+    }
+
+    private static void ScaleRectTransformBasedOnDistanceFromCamera(RectTransform rectTransform)
+    {
+        float distance = Vector3.Distance(Camera.main.transform.position, rectTransform.position);
+        rectTransform.localScale = new Vector3(distance / UIManager.vrUiScaleDivider, distance / UIManager.vrUiScaleDivider, 1f);
+
     }
 }
