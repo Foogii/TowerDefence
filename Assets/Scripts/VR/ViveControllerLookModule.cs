@@ -59,7 +59,7 @@ public class ViveControllerLookModule : PointerInputModule
 
     private bool IsTriggerPressed()
     {
-        return SteamVR_Input.GetStateDown("InteractUI", SteamVR_Input_Sources.RightHand);
+        return SteamVR_Input.GetStateDown("InteractUI", SteamVR_Input_Sources.Any);
     }
 
     void HandleSelection()
