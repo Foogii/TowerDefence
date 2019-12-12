@@ -2,17 +2,25 @@
 
 public static class UtilityMethods
 {
+
     public static void MoveUiElementToWorldPosition(RectTransform rectTransform, Vector3 worldPosition)
     {
-        //Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
-        //rectTransform.position = screenPoint;
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
+        {
+            Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
+            rectTransform.position = screenPoint;
+        }
 
-        //1 
-        rectTransform.position = worldPosition + new Vector3(0, 3);
-        //2 // Needed to rotate UI the right way 
-        rectTransform.LookAt(Camera.main.transform.position + Camera.main.transform.forward * 10000);
-        //3 
-        ScaleRectTransformBasedOnDistanceFromCamera(rectTransform);
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameVR")
+        {
+            //1 
+            rectTransform.position = worldPosition + new Vector3(0, 3);
+            //2 // Needed to rotate UI the right way 
+            rectTransform.LookAt(Camera.main.transform.position + Camera.main.transform.forward * 10000);
+            //3 
+            ScaleRectTransformBasedOnDistanceFromCamera(rectTransform);
+        }
     }
 
     // 1

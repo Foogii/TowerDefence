@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class UIManager : MonoBehaviour
     public Text txtWave;
     public Text txtEscapedEnemies;
 
-    public static float vrUiScaleDivider = 12;
-
     public Transform enemyHealthBars;
     public GameObject enemyHealthBarPrefab;
 
@@ -27,10 +26,14 @@ public class UIManager : MonoBehaviour
     public GameObject centerWindow;
     public GameObject damageCanvas;
 
+    private Scene scene;
+
+        public static float vrUiScaleDivider = 12f;
     //1
     void Awake()
     {
         Instance = this;
+        scene = SceneManager.GetActiveScene();
     }
     //2
     private void UpdateTopBar()
@@ -50,9 +53,9 @@ public class UIManager : MonoBehaviour
         addTowerWindow.SetActive(true);
         addTowerWindow.GetComponent<AddTowerWindow>().
         towerSlotToAddTowerTo = towerSlot;
-        UtilityMethods.MoveUiElementToWorldPosition(addTowerWindow.GetComponent<RectTransform>(), towerSlot.transform.position);
 
-        UtilityMethods.MoveUiElementToWorldPosition(addTowerWindow.GetComponent<RectTransform>(), towerSlot.transform.position);
+       // if (scene.name == "GameVR")
+            UtilityMethods.MoveUiElementToWorldPosition(addTowerWindow.GetComponent<RectTransform>(), towerSlot.transform.position);
     }
 
     // Update is called once per frame
@@ -73,7 +76,8 @@ public class UIManager : MonoBehaviour
         UtilityMethods.MoveUiElementToWorldPosition(towerInfoWindow.
         GetComponent<RectTransform>(), tower.transform.position);
 
-        UtilityMethods.MoveUiElementToWorldPosition(towerInfoWindow.GetComponent<RectTransform>(), tower.transform.position);
+        //if (scene.name == "GameVR")
+            UtilityMethods.MoveUiElementToWorldPosition(towerInfoWindow.GetComponent<RectTransform>(), tower.transform.position);
     }
 
     public void ShowWinScreen()
